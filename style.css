@@ -29,8 +29,6 @@ body {
     height: 8vh;
     width: 50vw;
     max-width: 750px;
-    display: flex;
-    align-items: center;
     gap: 3vh;
     padding-left: 2vh;
 }
@@ -47,9 +45,6 @@ body {
     grid-area: sidebar;
     height: 70vh;
     width: 20vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 #sidebarheader {
@@ -95,15 +90,13 @@ body {
     grid-area: body;
     height: 70vh;
     width: 60vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 #bodyheader {
     margin: 16px 0 8px 0;
     padding-bottom: 4px;
     font-size: 2vh;
+    font-weight: bold;
     border-bottom: 1px solid #52525b;
 }
 
@@ -122,4 +115,10 @@ body {
     background-color: #e4e4e7;
     border-radius: 4vh;
     border: 2px solid #52525b;
+    display: flex;
+    align-items: center;
+}
+
+#sidebar, #body {
+    flex-direction: column;
 }
