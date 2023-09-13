@@ -1,4 +1,7 @@
 // Create todo items with a factory
+const todoFactory = (title, descr, date, priority) => {
+    return {title, descr, date, priority}
+}
 // Assign todo to a list
 // todo should have title, descr, date, priority
 // todos should have a button to delete 
