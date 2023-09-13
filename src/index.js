@@ -12,6 +12,28 @@ const todoFactory = (title, descr, date, priority) => {
 // todo should get added to current list
 
 // Add default list of todos
+const defaultList = []
+
+const createDefault = (() => {
+    const washDishes = todoFactory('Wash Dishes', 'Clean dishes in the sink', '09-14-2023',
+                                'Low');
+    defaultList.push(washDishes)
+    const brushTeeth = todoFactory('Brush Teeth', '', '09-13-2023', 'Medium');
+    defaultList.push(brushTeeth);
+    const makeDinner = todoFactory('Make Dinner', 'Cook something to eat', '09-13-2023',
+                                'Low');
+    defaultList.push(makeDinner);
+    const finishProject = todoFactory('Finish Project', 'Finish To Do List', '09-15-2023',
+                                'High');
+    defaultList.push(finishProject);
+})();
+
+
+
+
+
+console.log(defaultList)
+
 // Load default list if no local storage
 
 // Users should be able to create a new list 
