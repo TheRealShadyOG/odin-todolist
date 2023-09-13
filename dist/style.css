@@ -1,6 +1,13 @@
+@font-face {
+    font-family: 'myfont';
+    src: url(./IndieFlower-Regular.ttf);
+}
+
 * {
     margin: 0;
     padding: 0;
+    color: #52525b;
+    font-family: 'myfont', sans-serif;
 }
 
 body {
@@ -22,6 +29,18 @@ body {
     height: 8vh;
     width: 50vw;
     max-width: 750px;
+    display: flex;
+    align-items: center;
+    gap: 3vh;
+    padding-left: 2vh;
+}
+
+#headertext {
+    font-size: 6vh;
+}
+
+#logo {
+    height: 5vh;
 }
 
 #sidebar {
