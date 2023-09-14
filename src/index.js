@@ -62,8 +62,8 @@ function setListCreate() {
 }
 
 function displayListForm() {
-    const listForm = document.querySelector('#newlist');
-    listForm.classList.remove('hidden');
+    const listForm = document.querySelector('#listformcontainer');
+    listForm.show()
 
     setListFormBtns();
 }
@@ -118,7 +118,8 @@ function cancelNewList() {
 function hideListForm() {
     const listForm = document.querySelector('#newlist');
     listForm.reset()
-    listForm.classList.add('hidden');
+    const listFormContainer = document.querySelector('#listformcontainer');
+    listFormContainer.close()
 }
 
 // Create object for lists
