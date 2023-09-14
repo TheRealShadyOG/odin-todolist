@@ -76,11 +76,10 @@ function createBody() {
 
 function createListForm() {
     const formContainer = document.createElement('dialog');
-    formContainer.setAttribute('id', 'formcontainer');
+    formContainer.setAttribute('id', 'listformcontainer');
 
     const newList = document.createElement('form');
     newList.setAttribute('id', 'newlist');
-    newList.classList.add('hidden');
 
     const listName = document.createElement('input');
     listName.setAttribute('type', 'text');
@@ -105,11 +104,10 @@ function createListForm() {
 
 function createTodoForm() {
     const formContainer = document.createElement('dialog');
-    formContainer.setAttribute('id', 'formcontainer');
+    formContainer.setAttribute('id', 'todoformcontainer');
 
     const newTodo = document.createElement('form');
     newTodo.setAttribute('id', 'newtodo');
-    newTodo.classList.add('hidden')
 
     const todoName = document.createElement('textarea');
     todoName.setAttribute('id', 'newtodoname');
