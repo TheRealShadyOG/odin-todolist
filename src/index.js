@@ -1,9 +1,13 @@
+import { loadPage } from "./pageDom";
+
+loadPage();
+
 // Create todo items with a factory
+// todo should have title, descr, date, priority
 const todoFactory = (title, descr, date, priority) => {
     return {title, descr, date, priority}
 }
 // Assign todo to a list
-// todo should have title, descr, date, priority
 // todos should have a button to delete 
 // when delete todo remove from list
 
@@ -27,12 +31,6 @@ const createDefault = (() => {
                                 'High');
     defaultList.push(finishProject);
 })();
-
-
-
-
-
-console.log(defaultList)
 
 // Load default list if no local storage
 
