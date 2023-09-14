@@ -56,7 +56,7 @@ function createBody() {
     const priority = document.createElement('div');
     priority.textContent = 'Priority'
     const create = document.createElement('img');
-    create.setAttribute('src', './img/delete.svg');
+    create.setAttribute('src', './img/create.svg');
     create.setAttribute('id', 'createtodo');
     bodyHeader.appendChild(title);
     bodyHeader.appendChild(descr);
