@@ -27,7 +27,6 @@ function deleteTodo(ele) {
 // todo should get added to current list
 
 // Add default list of todos
-
 const defaultList = [];
 const createDefault = (() => {
     const washDishes = todoFactory('Wash Dishes', 'Clean dishes in the sink', '09-14-2023',
@@ -48,6 +47,68 @@ const createDefault = (() => {
 
 // Users should be able to create a new list 
 // Form for users to create new list
+function setListCreate() {
+    const listCreate = document.querySelector('#createlist')
+    listCreate.addEventListener('click', displayListForm);
+}
+
+function displayListForm() {
+    const listForm = document.querySelector('#newlist');
+    listForm.classList.remove('hidden');
+
+    setListFormBtns();
+}
+
+function setListFormBtns() {
+    const addBtn = document.querySelector('#newlistbutton');
+    addBtn.addEventListener('click', addNewList);
+
+    const cancelBtn = document.querySelector('#newlistdelete');
+    cancelBtn.addEventListener('click', cancelNewList);
+
+    addEventListener('keypress', submitEnter)
+}
+
+function submitEnter(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        addNewList();
+    }
+}
+
+function addNewList() {
+    const newListName = document.querySelector('#newlistname').value;
+    if (newListName !== '') {
+        listOfLists[newListName] = [];
+
+        let listBody = document.querySelector('#sidebarcontainer');
+        while (listBody.firstChild) {
+            listBody.removeChild(listBody.lastChild);
+        }
+
+        changeCurrentList(newListName);
+
+        let listNames = Object.keys(listOfLists);
+        loadLists(listNames);
+        setListListener();
+        setListDeleteBtn();
+
+        hideListForm();
+
+        removeEventListener('keypress', submitEnter);
+    }
+}
+
+function cancelNewList() {
+    hideListForm();
+    removeEventListener('keypress', submitEnter);
+}
+
+function hideListForm() {
+    const listForm = document.querySelector('#newlist');
+    listForm.reset()
+    listForm.classList.add('hidden');
+}
 
 // Create object for lists
 const listOfLists = {};
@@ -59,12 +120,16 @@ let currentList = defaultList;
 function setListListener() {
     const listTitles = document.querySelectorAll('#listtitle');
     listTitles.forEach((ele) => {
-        ele.addEventListener('click', changeCurrentList)
+        ele.addEventListener('click', listListener)
     })
 }
 
-function changeCurrentList(ele) {
+function listListener(ele) {
     let listName = ele.target.textContent
+    changeCurrentList(listName);
+}
+
+function changeCurrentList(listName) {
     currentList = listOfLists[listName]
 
     let todoBody = document.querySelector('#bodycontainer');
@@ -88,28 +153,22 @@ function setListDeleteBtn() {
 
 function deleteList(ele) {
     let listName = ele.target.previousSibling.textContent;
-    delete listOfLists[listName];
-    currentList = [];
+
+    if (listOfLists[listName] === currentList) {
+        currentList = [];
     
-    let todoBody = document.querySelector('#bodycontainer');
-    while (todoBody.firstChild) {
-        todoBody.removeChild(todoBody.lastChild);
+        let todoBody = document.querySelector('#bodycontainer');
+        while (todoBody.firstChild) {
+            todoBody.removeChild(todoBody.lastChild);
+        }
     }
+
+    delete listOfLists[listName];
 
     let container = ele.target.parentElement.parentElement;
     let listItem = ele.target.parentElement;
-    container.removeChild(listItem)
-
-
-    console.log(currentList);
-    console.log(listOfLists);
+    container.removeChild(listItem);
 }
-
-// UI
-// Header with 'To Do List'
-// Sidebar with Lists and button to create new list
-// Body with todos of current list and button to create new todo
-
 
 // Add local storage
 // Save lists and todos to local storage when new one is added
@@ -128,3 +187,4 @@ loadContent(defaultList);
 setTodoDeleteBtns();
 setListListener();
 setListDeleteBtn();
+setListCreate();
