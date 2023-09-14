@@ -275,11 +275,14 @@ function loadContent(list) {
     loadLists(listNames);
 }
 
-loadContent(defaultList);
+function setButtons() {
+    setTodoDeleteBtns();
+    setTodoCreate();
+    setListListener();
+    setListDeleteBtn();
+    setListCreate();
+}
 
-setTodoDeleteBtns();
-setTodoCreate();
-setListListener();
-setListDeleteBtn();
-setListCreate();
+loadContent();
+setButtons()
 
