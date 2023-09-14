@@ -80,4 +80,50 @@ function loadPage() {
     createBody();
 }
 
-export { loadPage }
+function loadTodos(list) {
+    for (let i = 0; i < list.length; i++) {
+        const todoContainer = document.createElement('div');
+        todoContainer.setAttribute('id', 'todocontainer');
+
+        const title = document.createElement('div');
+        title.textContent = list[i].title;
+        const descr = document.createElement('div');
+        descr.textContent = list[i].descr;
+        const date = document.createElement('div');
+        date.textContent = list[i].date;
+        const priority = document.createElement('div');
+        priority.textContent = list[i].priority;
+        const deleteImg = document.createElement('img');
+        deleteImg.setAttribute('src', './img/delete.svg');
+        deleteImg.setAttribute('id', 'deletetodo');
+        todoContainer.appendChild(title);
+        todoContainer.appendChild(descr);
+        todoContainer.appendChild(date);
+        todoContainer.appendChild(priority);
+        todoContainer.appendChild(deleteImg);
+
+        const bodyContainer = document.querySelector('#bodycontainer');
+        bodyContainer.appendChild(todoContainer);
+    }
+}
+
+function loadLists(list) {
+    for (let i = 0; i < list.length; i++) {
+        const listContainer = document.createElement('div');
+        listContainer.setAttribute('id', 'listcontainer');
+
+        const listTitle = document.createElement('div');
+        listTitle.setAttribute('id', 'listtitle');
+        listTitle.textContent = list[i];
+        const deleteImg = document.createElement('img');
+        deleteImg.setAttribute('src', './img/delete.svg');
+        deleteImg.setAttribute('id', 'deletelist');
+        listContainer.appendChild(listTitle);
+        listContainer.appendChild(deleteImg);
+
+        const sidebarContainer = document.querySelector('#sidebarcontainer');
+        sidebarContainer.appendChild(listContainer);
+    }
+}
+
+export { loadPage, loadTodos, loadLists }
