@@ -53,7 +53,30 @@ const createDefault = (() => {
 const listOfLists = {};
 listOfLists.Default = defaultList;
 
+let currentList = defaultList;
+
 // Users should be able to swap lists 
+function setListListener() {
+    const listTitles = document.querySelectorAll('#listtitle');
+    listTitles.forEach((ele) => {
+        ele.addEventListener('click', changeCurrentList)
+    })
+}
+
+function changeCurrentList(ele) {
+    let listName = ele.target.textContent
+    currentList = listOfLists[listName]
+
+    let todoBody = document.querySelector('#bodycontainer');
+    while (todoBody.firstChild) {
+        todoBody.removeChild(todoBody.lastChild);
+    }
+
+    loadTodos(currentList);
+    setTodoDeleteBtns();
+}
+
+
 // Button to delete list 
 // When deleting list, delete all todos inside
 
@@ -78,3 +101,4 @@ function loadContent(list) {
 loadContent(defaultList);
 
 setTodoDeleteBtns();
+setListListener();
