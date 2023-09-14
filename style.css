@@ -122,3 +122,8 @@ body {
 #sidebar, #body {
     flex-direction: column;
 }
+
+#listtitle:hover, #createlist:hover, #deletelist:hover, #createtodo:hover, #deletetodo:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
