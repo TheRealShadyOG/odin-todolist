@@ -1,6 +1,4 @@
-import { loadPage } from "./pageDom";
-
-loadPage();
+import { loadLists, loadPage, loadTodos } from "./pageDom";
 
 // Create todo items with a factory
 // todo should have title, descr, date, priority
@@ -16,8 +14,8 @@ const todoFactory = (title, descr, date, priority) => {
 // todo should get added to current list
 
 // Add default list of todos
-const defaultList = []
 
+const defaultList = [];
 const createDefault = (() => {
     const washDishes = todoFactory('Wash Dishes', 'Clean dishes in the sink', '09-14-2023',
                                 'Low');
@@ -34,8 +32,13 @@ const createDefault = (() => {
 
 // Load default list if no local storage
 
+
 // Users should be able to create a new list 
 // Form for users to create new list
+
+// Create object for lists
+const listOfLists = {};
+listOfLists.Default = defaultList;
 
 // Users should be able to swap lists 
 // Button to delete list 
