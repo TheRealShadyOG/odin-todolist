@@ -79,6 +79,31 @@ function changeCurrentList(ele) {
 
 // Button to delete list 
 // When deleting list, delete all todos inside
+function setListDeleteBtn() {
+    const listDelete = document.querySelectorAll('#deletelist');
+    listDelete.forEach((ele) => {
+        ele.addEventListener('click', deleteList);
+    })
+}
+
+function deleteList(ele) {
+    let listName = ele.target.previousSibling.textContent;
+    delete listOfLists[listName];
+    currentList = [];
+    
+    let todoBody = document.querySelector('#bodycontainer');
+    while (todoBody.firstChild) {
+        todoBody.removeChild(todoBody.lastChild);
+    }
+
+    let container = ele.target.parentElement.parentElement;
+    let listItem = ele.target.parentElement;
+    container.removeChild(listItem)
+
+
+    console.log(currentList);
+    console.log(listOfLists);
+}
 
 // UI
 // Header with 'To Do List'
@@ -102,3 +127,4 @@ loadContent(defaultList);
 
 setTodoDeleteBtns();
 setListListener();
+setListDeleteBtn();
