@@ -11,6 +11,9 @@ function createHeader() {
 
     header.appendChild(logo);
     header.appendChild(headerText);
+
+    const pageBody = document.querySelector('body');
+    pageBody.appendChild(header);
 }
 
 function createSidebar() {
@@ -33,6 +36,9 @@ function createSidebar() {
 
     sidebar.appendChild(sidebarHeader);
     sidebar.appendChild(sidebarContainer);
+
+    const pageBody = document.querySelector('body');
+    pageBody.appendChild(sidebar);
 }
 
 function createBody() {
@@ -63,4 +69,7 @@ function createBody() {
 
     body.appendChild(bodyHeader);
     body.appendChild(bodyContainer);
+
+    const pageBody = document.querySelector('body');
+    pageBody.appendChild(body);
 }
