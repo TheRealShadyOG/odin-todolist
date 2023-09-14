@@ -81,11 +81,7 @@ function addNewList() {
     if (newListName !== '') {
         listOfLists[newListName] = [];
 
-        let listBody = document.querySelector('#sidebarcontainer');
-        while (listBody.firstChild) {
-            listBody.removeChild(listBody.lastChild);
-        }
-
+        clearLists()
         changeCurrentList(newListName);
 
         let listNames = Object.keys(listOfLists);
@@ -94,8 +90,14 @@ function addNewList() {
         setListDeleteBtn();
 
         hideListForm();
-
         removeEventListener('keypress', submitEnter);
+    }
+}
+
+function clearLists() {
+    let listBody = document.querySelector('#sidebarcontainer');
+    while (listBody.firstChild) {
+        listBody.removeChild(listBody.lastChild);
     }
 }
 
@@ -132,13 +134,16 @@ function listListener(ele) {
 function changeCurrentList(listName) {
     currentList = listOfLists[listName]
 
+    clearTodos();
+    loadTodos(currentList);
+    setTodoDeleteBtns();
+}
+
+function clearTodos() {
     let todoBody = document.querySelector('#bodycontainer');
     while (todoBody.firstChild) {
         todoBody.removeChild(todoBody.lastChild);
     }
-
-    loadTodos(currentList);
-    setTodoDeleteBtns();
 }
 
 
@@ -156,11 +161,7 @@ function deleteList(ele) {
 
     if (listOfLists[listName] === currentList) {
         currentList = [];
-    
-        let todoBody = document.querySelector('#bodycontainer');
-        while (todoBody.firstChild) {
-            todoBody.removeChild(todoBody.lastChild);
-        }
+        clearTodos();
     }
 
     delete listOfLists[listName];
