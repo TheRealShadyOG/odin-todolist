@@ -21,6 +21,7 @@ function deleteTodo(ele) {
     clearTodos();
     loadTodos(currentList);
     setTodoDeleteBtns();
+    saveToStorage();
 }
 
 function findTodo(ele) {
@@ -100,6 +101,7 @@ function addNewTodo() {
 
         hideTodoForm();
         removeEventListener('keypress', submitEnterTodo);
+        saveToStorage()
     }
     
 }
@@ -163,6 +165,7 @@ function addNewList() {
 
         hideListForm();
         removeEventListener('keypress', submitEnterList);
+        saveToStorage()
     }
 }
 
@@ -186,7 +189,7 @@ function hideListForm() {
 }
 
 // Create object for lists
-const listOfLists = {};
+let listOfLists = {};
 listOfLists.Default = defaultList;
 
 let currentList = defaultList;
@@ -242,18 +245,33 @@ function deleteList(ele) {
     let container = ele.target.parentElement.parentElement;
     let listItem = ele.target.parentElement;
     container.removeChild(listItem);
+    saveToStorage()
 }
 
 // Add local storage
 // Save lists and todos to local storage when new one is added
+function saveToStorage() {
+    localStorage.setItem('localLists', JSON.stringify(listOfLists));
+}
+
+function checkStorage() {
+    let storageLists = JSON.parse(localStorage.getItem('localLists'));
+    if (storageLists !== null) {
+        console.log(storageLists)
+        listOfLists = storageLists;
+        currentList = listOfLists[Object.keys(listOfLists)[0]];
+    } 
+}
+
 // Look for data in local storage when loading
 // Load default list if no local storage
-
-
 function loadContent(list) {
+    checkStorage();
     let listNames = Object.keys(listOfLists);
     loadPage();
-    loadTodos(list);
+    if (currentList !== undefined) {
+        loadTodos(currentList);
+    }
     loadLists(listNames);
 }
 
@@ -264,3 +282,4 @@ setTodoCreate();
 setListListener();
 setListDeleteBtn();
 setListCreate();
+
