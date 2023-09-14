@@ -74,10 +74,40 @@ function createBody() {
     pageBody.appendChild(body);
 }
 
+function createListForm() {
+    const formContainer = document.createElement('div');
+    formContainer.setAttribute('id', 'formcontainer');
+
+    const newList = document.createElement('form');
+    newList.setAttribute('id', 'newlist');
+    newList.classList.add('hidden');
+
+    const listName = document.createElement('input');
+    listName.setAttribute('type', 'text');
+    listName.setAttribute('placeholder', 'List Name');
+    listName.setAttribute('id', 'newlistname');
+    const listButton = document.createElement('button');
+    listButton.setAttribute('type', 'button');
+    listButton.setAttribute('id', 'newlistbutton');
+    listButton.textContent = 'Add';
+    const listDelete = document.createElement('img');
+    listDelete.setAttribute('src', './img/delete.svg');
+    listDelete.setAttribute('id', 'newlistdelete');
+    newList.appendChild(listName);
+    newList.appendChild(listButton);
+    newList.appendChild(listDelete);
+
+    formContainer.appendChild(newList);
+
+    const pageBody = document.querySelector('body');
+    pageBody.appendChild(formContainer);
+}
+
 function loadPage() {
     createHeader();
     createSidebar();
     createBody();
+    createListForm();
 }
 
 function loadTodos(list) {
