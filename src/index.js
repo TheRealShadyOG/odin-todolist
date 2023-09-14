@@ -5,7 +5,6 @@ import { loadLists, loadPage, loadTodos } from "./pageDom";
 const todoFactory = (title, descr, date, priority) => {
     return {title, descr, date, priority}
 }
-// Assign todo to a list
 
 // todos should have a button to delete
 function setTodoDeleteBtns() {
@@ -16,10 +15,23 @@ function setTodoDeleteBtns() {
 }
 
 function deleteTodo(ele) {
-    let container = ele.target.parentElement.parentElement;
-    let todoItem = ele.target.parentElement;
-    // when delete todo remove from list 
-    container.removeChild(todoItem)
+    let todoIndex = findTodo(ele);
+    currentList.splice(todoIndex, 1);
+
+    clearTodos();
+    loadTodos(currentList);
+    setTodoDeleteBtns();
+}
+
+function findTodo(ele) {
+    let parent = ele.target.parentElement.parentElement;
+    let siblings = parent.children;
+
+    for (let i = 0; i < siblings.length; i++) {
+        if (siblings[i] === ele.target.parentElement) {
+            return i;
+        }
+    }
 }
 
 // Users should be able to create new todo
@@ -41,9 +53,6 @@ const createDefault = (() => {
                                 'High');
     defaultList.push(finishProject);
 })();
-
-// Load default list if no local storage
-
 
 // Users should be able to create a new list 
 // Form for users to create new list
@@ -174,6 +183,7 @@ function deleteList(ele) {
 // Add local storage
 // Save lists and todos to local storage when new one is added
 // Look for data in local storage when loading
+// Load default list if no local storage
 
 
 function loadContent(list) {
