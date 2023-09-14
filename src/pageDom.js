@@ -75,7 +75,7 @@ function createBody() {
 }
 
 function createListForm() {
-    const formContainer = document.createElement('div');
+    const formContainer = document.createElement('dialog');
     formContainer.setAttribute('id', 'formcontainer');
 
     const newList = document.createElement('form');
@@ -104,7 +104,7 @@ function createListForm() {
 }
 
 function createTodoForm() {
-    const formContainer = document.createElement('div');
+    const formContainer = document.createElement('dialog');
     formContainer.setAttribute('id', 'formcontainer');
 
     const newTodo = document.createElement('form');
