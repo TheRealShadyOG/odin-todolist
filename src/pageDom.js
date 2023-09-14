@@ -103,11 +103,52 @@ function createListForm() {
     pageBody.appendChild(formContainer);
 }
 
+function createTodoForm() {
+    const formContainer = document.createElement('div');
+    formContainer.setAttribute('id', 'formcontainer');
+
+    const newTodo = document.createElement('form');
+    newTodo.setAttribute('id', 'newtodo');
+    newTodo.classList.add('hidden')
+
+    const todoName = document.createElement('textarea');
+    todoName.setAttribute('id', 'newtodoname');
+    todoName.textContent = 'Title';
+    const todoDescr = document.createElement('textarea');
+    todoDescr.setAttribute('id', 'newtododescr');
+    todoDescr.textContent = 'Description';
+    const todoDate = document.createElement('textarea');
+    todoDate.setAttribute('id', 'newtododate');
+    todoDate.textContent = 'Date (DD-MM-YYYY)';
+    const todoPriority = document.createElement('textarea');
+    todoPriority.setAttribute('id', 'newtodopriority');
+    todoPriority.textContent = 'Priority';
+    const todoButton = document.createElement('button');
+    todoButton.setAttribute('id', 'newtodobutton');
+    todoButton.setAttribute('type', 'button');
+    todoButton.textContent = 'Add';
+    const todoDelete = document.createElement('img');
+    todoDelete.setAttribute('src', './img/delete.svg');
+    todoDelete.setAttribute('id', 'newtododelete');
+    newTodo.appendChild(todoName);
+    newTodo.appendChild(todoDescr);
+    newTodo.appendChild(todoDate);
+    newTodo.appendChild(todoPriority);
+    newTodo.appendChild(todoButton);
+    newTodo.appendChild(todoDelete);
+
+    formContainer.appendChild(newTodo);
+
+    const pageBody = document.querySelector('body');
+    pageBody.appendChild(formContainer);
+}
+
 function loadPage() {
     createHeader();
     createSidebar();
     createBody();
     createListForm();
+    createTodoForm();
 }
 
 function loadTodos(list) {
