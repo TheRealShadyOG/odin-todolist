@@ -6,8 +6,21 @@ const todoFactory = (title, descr, date, priority) => {
     return {title, descr, date, priority}
 }
 // Assign todo to a list
-// todos should have a button to delete 
-// when delete todo remove from list
+
+// todos should have a button to delete
+function setTodoDeleteBtns() {
+    const todoDeleteBtn = document.querySelectorAll('#deletetodo');
+    todoDeleteBtn.forEach((ele) => {
+    ele.addEventListener('click', deleteTodo);
+})
+}
+
+function deleteTodo(ele) {
+    let container = ele.target.parentElement.parentElement;
+    let todoItem = ele.target.parentElement;
+    // when delete todo remove from list 
+    container.removeChild(todoItem)
+}
 
 // Users should be able to create new todo
 // Form for user to create new todo
@@ -63,3 +76,5 @@ function loadContent(list) {
 }
 
 loadContent(defaultList);
+
+setTodoDeleteBtns();
