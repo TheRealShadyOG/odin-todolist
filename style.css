@@ -111,7 +111,7 @@ body {
     height: 55vh;
 }
 
-#header, #sidebar, #body {
+#header, #sidebar, #body, #newlist {
     background-color: #e4e4e7;
     border-radius: 4vh;
     border: 2px solid #52525b;
@@ -123,7 +123,54 @@ body {
     flex-direction: column;
 }
 
-#listtitle:hover, #createlist:hover, #deletelist:hover, #createtodo:hover, #deletetodo:hover {
+#listtitle:hover, #createlist:hover, #deletelist:hover, #createtodo:hover, #deletetodo:hover,
+#newlistdelete:hover {
     opacity: 0.5;
     cursor: pointer;
+}
+
+#formcontainer {
+    position: fixed;
+}
+
+#newlist {
+    height: 9vh;
+    width: 50vw;
+    max-width: 750px;
+    box-shadow: 2px 2px 3px #52525b;
+    justify-content: center;
+    gap: 8px;
+}
+
+#newlistname {
+    width: 25vw;
+    max-width: 375px;
+    outline: none;
+}
+
+#newlistbutton {
+    width: 5vw;
+}
+
+#newlistbutton:hover, #newlistname:focus {
+    background-color: #52525b;
+    color: #e4e4e7;
+}
+
+#newlistname, #newlistbutton {
+    appearance: none;
+    box-sizing: border-box;
+    border: 1px solid #52525b;
+    border-radius: 1.3vh;
+    background-color: #e4e4e7;
+    text-align: center;
+    font-size: 2vh;
+}
+
+#newlistname ,#newlistbutton, #newlistdelete {
+    height: 4vh;
+}
+
+.hidden {
+    visibility: hidden;
 }
