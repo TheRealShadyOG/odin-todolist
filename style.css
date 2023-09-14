@@ -111,7 +111,7 @@ body {
     height: 55vh;
 }
 
-#header, #sidebar, #body, #newlist {
+#header, #sidebar, #body, #newlist, #newtodo {
     background-color: #e4e4e7;
     border-radius: 4vh;
     border: 2px solid #52525b;
@@ -124,7 +124,7 @@ body {
 }
 
 #listtitle:hover, #createlist:hover, #deletelist:hover, #createtodo:hover, #deletetodo:hover,
-#newlistdelete:hover {
+#newlistdelete:hover, #newtododelete:hover {
     opacity: 0.5;
     cursor: pointer;
 }
@@ -152,7 +152,8 @@ body {
     width: 5vw;
 }
 
-#newlistbutton:hover, #newlistname:focus {
+#newlistbutton:hover, #newlistname:focus, #newtodobutton:hover, #newtodoname:focus, 
+#newtododescr:focus, #newtododate:focus, #newtodopriority:focus {
     background-color: #52525b;
     color: #e4e4e7;
 }
@@ -173,4 +174,64 @@ body {
 
 .hidden {
     visibility: hidden;
+}
+
+#newtodo {
+    height: 50vh;
+    width: 75vw;
+    max-width: 750px;
+    box-shadow: 2px 2px 3px #52525b;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 2fr 2fr 1fr;
+    grid-template-areas: 'title descr'
+                         'date priority'
+                         'button button';
+    place-items: center;
+}
+
+#newtodoname, #newtododescr, #newtododate, #newtodopriority {
+    height: 8vh;
+    text-align: center;
+    resize: none;
+    outline: none;
+    overflow: hidden;
+}
+
+#newtodoname, #newtododescr, #newtododate, #newtodopriority, #newtodobutton {
+    width: 300px;
+    appearance: none;
+    box-sizing: border-box;
+    font-size: 2.5vh;
+    border: 1px solid #52525b;
+    border-radius: 1.3vh;
+    background-color: #e4e4e7;
+}
+
+#newtodoname {
+    grid-area: title;
+}
+
+#newtododescr {
+    grid-area: descr;
+}
+
+#newtododate {
+    grid-area: date;
+}
+
+#newtodopriority {
+    grid-area: priority;
+}
+
+#newtodobutton {
+    height: 4vh;
+    grid-area: button;
+}
+
+#newtododelete {
+    position: absolute;
+    height: 3.5vh;
+    top: 16px;
+    right: 16px;
 }
