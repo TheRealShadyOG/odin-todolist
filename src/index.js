@@ -34,10 +34,6 @@ function findTodo(ele) {
     }
 }
 
-// Users should be able to create new todo
-// Form for user to create new todo
-// todo should get added to current list
-
 // Add default list of todos
 const defaultList = [];
 const createDefault = (() => {
@@ -54,6 +50,72 @@ const createDefault = (() => {
     defaultList.push(finishProject);
 })();
 
+// Users should be able to create new todo
+// Form for user to create new todo
+// todo should get added to current list
+function setTodoCreate() {
+    const todoCreate = document.querySelector('#createtodo');
+    todoCreate.addEventListener('click', displayTodoForm);
+}
+
+function displayTodoForm() {
+    const todoForm = document.querySelector('#todoformcontainer');
+    todoForm.show();
+
+    setTodoFormBtns();
+}
+
+function setTodoFormBtns() {
+    const addBtn = document.querySelector('#newtodobutton');
+    addBtn.addEventListener('click', addNewTodo);
+
+    const cancelBtn = document.querySelector('#newtododelete');
+    cancelBtn.addEventListener('click', cancelNewTodo);
+
+    addEventListener('keypress', submitEnterTodo);
+}
+
+function submitEnterTodo(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        addNewTodo();
+        removeEventListener('keypress', submitEnterTodo);
+    }
+}
+
+function addNewTodo() {
+    const newTodoName = document.querySelector('#newtodoname').value;
+    const newTodoDescr = document.querySelector('#newtododescr').value;
+    const newTodoDate = document.querySelector('#newtododate').value;
+    const newTodoPriority = document.querySelector('#newtodopriority').value;
+
+    if (newTodoName !== '' && newTodoDescr !== '' && newTodoDate !== '' && 
+     newTodoPriority !== '') {
+        let newTodo = todoFactory(newTodoName, newTodoDescr, newTodoDate, newTodoPriority);
+        currentList.push(newTodo)
+
+        clearTodos()
+        loadTodos(currentList);
+        setTodoDeleteBtns();
+
+        hideTodoForm();
+        removeEventListener('keypress', submitEnterTodo);
+    }
+    
+}
+
+function cancelNewTodo() {
+    hideTodoForm();
+    removeEventListener('keypress', submitEnterTodo);
+}
+
+function hideTodoForm() {
+    const todoForm = document.querySelector('#newtodo');
+    todoForm.reset()
+    const todoFormContainer = document.querySelector('#todoformcontainer');
+    todoFormContainer.close()
+}
+
 // Users should be able to create a new list 
 // Form for users to create new list
 function setListCreate() {
@@ -63,7 +125,7 @@ function setListCreate() {
 
 function displayListForm() {
     const listForm = document.querySelector('#listformcontainer');
-    listForm.show()
+    listForm.show();
 
     setListFormBtns();
 }
@@ -75,13 +137,14 @@ function setListFormBtns() {
     const cancelBtn = document.querySelector('#newlistdelete');
     cancelBtn.addEventListener('click', cancelNewList);
 
-    addEventListener('keypress', submitEnter)
+    addEventListener('keypress', submitEnterList)
 }
 
-function submitEnter(event) {
+function submitEnterList(event) {
     if (event.key === "Enter") {
         event.preventDefault();
         addNewList();
+        removeEventListener('keypress', submitEnterList);
     }
 }
 
@@ -99,7 +162,7 @@ function addNewList() {
         setListDeleteBtn();
 
         hideListForm();
-        removeEventListener('keypress', submitEnter);
+        removeEventListener('keypress', submitEnterList);
     }
 }
 
@@ -112,7 +175,7 @@ function clearLists() {
 
 function cancelNewList() {
     hideListForm();
-    removeEventListener('keypress', submitEnter);
+    removeEventListener('keypress', submitEnterList);
 }
 
 function hideListForm() {
@@ -197,6 +260,7 @@ function loadContent(list) {
 loadContent(defaultList);
 
 setTodoDeleteBtns();
+setTodoCreate();
 setListListener();
 setListDeleteBtn();
 setListCreate();
