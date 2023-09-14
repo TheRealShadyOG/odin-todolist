@@ -111,16 +111,16 @@ function createTodoForm() {
 
     const todoName = document.createElement('textarea');
     todoName.setAttribute('id', 'newtodoname');
-    todoName.textContent = 'Title';
+    todoName.setAttribute('placeholder', 'Title');
     const todoDescr = document.createElement('textarea');
     todoDescr.setAttribute('id', 'newtododescr');
-    todoDescr.textContent = 'Description';
+    todoDescr.setAttribute('placeholder', 'Description');
     const todoDate = document.createElement('textarea');
     todoDate.setAttribute('id', 'newtododate');
-    todoDate.textContent = 'Date (DD-MM-YYYY)';
+    todoDate.setAttribute('placeholder', 'Date (DD-MM-YYYY)');
     const todoPriority = document.createElement('textarea');
     todoPriority.setAttribute('id', 'newtodopriority');
-    todoPriority.textContent = 'Priority';
+    todoPriority.setAttribute('placeholder', 'Priority');
     const todoButton = document.createElement('button');
     todoButton.setAttribute('id', 'newtodobutton');
     todoButton.setAttribute('type', 'button');
