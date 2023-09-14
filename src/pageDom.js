@@ -73,3 +73,11 @@ function createBody() {
     const pageBody = document.querySelector('body');
     pageBody.appendChild(body);
 }
+
+function loadPage() {
+    createHeader();
+    createSidebar();
+    createBody();
+}
+
+export { loadPage }
