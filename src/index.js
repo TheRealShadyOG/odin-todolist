@@ -53,3 +53,13 @@ listOfLists.Default = defaultList;
 // Add local storage
 // Save lists and todos to local storage when new one is added
 // Look for data in local storage when loading
+
+
+function loadContent(list) {
+    let listNames = Object.keys(listOfLists);
+    loadPage();
+    loadTodos(list);
+    loadLists(listNames);
+}
+
+loadContent(defaultList);
